@@ -1,0 +1,25 @@
+---
+# fichier de taches operation
+# - name: ping de machine
+#   ansible.builtin.ping:
+
+# on sauvegarde la sortie de chaque itération dans un registre appelé harouna
+
+- name: sauvegardons la sortie de la boucle dans une variable
+  ansible.builtin.shell: "echo {{ item }}"
+  loop:
+    - "one"
+    - "two"
+  register: harouna
+
+# on recupère le resultat de la du registre qui est une liste de deux éléments
+
+- name: resultats
+  ansible.builtin.debug: 
+    msg="{{ item.invocation.module_args._raw_params }}"
+  loop: "{{ harouna.results }}"
+  loop_control:
+    label: "{{ item.invocation.module_args._raw_params }}"  
+    
+  
+  

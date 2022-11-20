@@ -1,0 +1,57 @@
+{
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "db_prod",
+            "dbservers",
+            "development",
+            "production",
+            "ungrouped",
+            "webservers"
+        ]
+    },
+    "db_dev": {
+        "hosts": [
+            "203.0.113.113"
+        ]
+    },
+    "db_prod": {
+        "hosts": [
+            "server_hostname"
+        ]
+    },
+    "dbservers": {
+        "children": [
+            "db_dev"
+        ]
+    },
+    "development": {
+        "children": [
+            "db_dev",
+            "web_dev"
+        ]
+    },
+    "production": {
+        "children": [
+            "web_prod"
+        ]
+    },
+    "web_dev": {
+        "hosts": [
+            "203.0.113.111"
+        ]
+    },
+    "web_prod": {
+        "hosts": [
+            "203.0.113.112"
+        ]
+    },
+    "webservers": {
+        "children": [
+            "web_dev",
+            "web_prod"
+        ]
+    }
+}
